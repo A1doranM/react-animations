@@ -1,9 +1,11 @@
 import "./App.css";
 import {useEffect, useState} from "react";
-import {CSSTransition, Transition} from "react-transition-group";
+import {CSSTransition, Transition, SwitchTransition} from "react-transition-group";
 
 function App() {
     const [loaderVisible, setLoaderVisible] = useState(false);
+    const [mode, setMode] = useState("out-in");
+    const [toggle, setToggle] = useState(false);
 
     // useEffect(() => {
     //     setTimeout(() => {
@@ -16,6 +18,10 @@ function App() {
 
     const toggleLoader = () => {
         setLoaderVisible(!loaderVisible);
+    }
+
+    function changeHandler(e) {
+        setMode(e.target.value);
     }
 
     return (
@@ -54,6 +60,7 @@ function App() {
                     timeout={500}
                     mountOnEnter
                     unmountOnExit
+                    classNames="circle"
                     onEnter={() => {
                         console.log("Entered")
                     }}
@@ -75,6 +82,26 @@ function App() {
                         return <div className={`circle ${state}`}/>
                     }}
                 </CSSTransition>
+
+                <div>
+                    <div>
+                        <label className="label"></label>
+                        <input onChange={changeHandler} type="radio" id="out-in" value="out-in" name="radio"/>
+                        <label className="label"></label>
+                        <input onChange={changeHandler} type="radio" id="in-out" value="in-out" name="radio"/>
+                    </div>
+                    <SwitchTransition mode={mode}>
+                        <CSSTransition
+                            key={toggle}
+                            timeout={500}
+                            classNames="fade"
+                        >
+                            <button onClick={() => setToggle((!toggle))}>
+                                {toggle ? "Hello" : "Goodbye"}
+                            </button>
+                        </CSSTransition>
+                    </SwitchTransition>
+                </div>
 
             </div>
         </div>

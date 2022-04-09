@@ -18,20 +18,72 @@
     border: 3px dashed black;
 }
 
-.circle.entering {
+/*.circle.entering {*/
+/*    animation: show-loader 0.5s forwards;*/
+/*}*/
+
+/*.circle.entered {*/
+/*    animation: rotate-loader 0.5s forwards;*/
+/*}*/
+
+/*.circle.exiting {*/
+/*    animation: show-loader 0.5s reverse;*/
+/*}*/
+
+/*.circle.exited {*/
+
+/*}*/
+
+.circle-enter-active {
     animation: show-loader 0.5s forwards;
 }
 
-.circle.entered {
+.circle-enter-done {
     animation: rotate-loader 0.5s forwards;
 }
 
-.circle.exiting {
+.circle-exit-active {
     animation: show-loader 0.5s reverse;
 }
 
 .circle.exited {
 
+}
+
+input {
+    margin: 20px;
+}
+
+.fade-enter-active {
+    animation: fade-in 500ms forwards;
+}
+
+.fade-exit-active {
+    animation: fade-out 500ms forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(150px);
+    }
 }
 
 @keyframes show-loader {
